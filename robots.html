@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Robot Swarm Awakening</title>
+	</head>
+	
+	<body style="width:700px; margin-left: 50px">
+	
+		<h1 style="margin-bottom:0; text-align: center">The Freeze-Tag Problem:</h1>
+		<h2 style="margin-bottom:10; margin-top:10; text-align: center">Awakening a Robot Swarm</h2>
+		
+		<p>This problem investigates waking up a collection of sleeping robots spread out over a 2D plane.  All but one of the robots are initially asleep and the awake robot attempts to wake up all of the robots by moving to their locations and activating their power switch.  Once a robot has been awakened it can help wake up the other robots.  The goal is to find a schedule that permits the robots to be awakened in the minimum amount of time.</p>
+		<p>This web page is a visualization of four such algorithms for awakening schedule creation.  Click one of the algorithm buttons below and then click play to watch the swarm awaken.</p>
+		
+		
+		<canvas id="canvas" width="500" height="500" style="border:1px solid #000000; margin-bottom: 10px"> </canvas>
+		<br>
+		<button id = "playButton" type="button" style="width:80;height:30;margin-bottom:7">Play</button>
+		<button id = "resetButton" type="button" style="width:80;height:30;margin-bottom:7">Reset</button>
+		<button id = "showPathsButton" type="button" style="width:110;height:30;margin-bottom:7">Show Paths</button>
+		<button id = "showDelaunay" type="button" style="width:280;height:30;margin-bottom:7">Show Delaunay Triangulation</button>
+		
+		<br>
+		<input id = "number" type="text" value="50 robots" style="margin-left: 100px; width:180;height:30;margin-bottom:20; text-align:center"></input>
+		<button id = "stepButton" type="button" value = "Steps = 0" style="width:180;height:30;margin-bottom:7">Step = 0</button>
+		
+		<br>
+		<button id = "inOrderButton" type="button" style="width:280;height:30;margin-bottom:7">In Order Algorithm</button>
+		<button id = "greedyClaimButton" type="button" style="width:280;height:30;margin-bottom:7">Greedy Claim Algorithm</button>
+		<br>
+		<button id = "greedyDynamicButton" type="button" style="width:280;height:30;margin-bottom:7">Greedy Delayed Target Choice</button>
+		<button id = "constantButton" type="button" style="width:280;height:30;margin-bottom:7">Constant Factor Algorithm</button>
+		
+		<p><b>In Order Algorithm.</b>  This algorithm uses the ID numbers of the robots in order; i.e., sends robot 0 to awaken robot 1 then 0 awakens 2 and 1 awakens 3.  When any robot is awakened or reaches its target it claims the robot with the next sequential unclaimed ID number. </p>
+		<p><b>Greedy Claim Algorithm.</b> The Greedy algorithms make locally optimal decisions.  In this case when a robot is awakened or needs a new target it claims the nearest unclaimed sleeping robot and goes to awaken it.</p>
+		<p><b>Greedy Delayed Target Choice.</b> The Greedy claim algorithm doesn't consider that one robot may in face be able to reach a target before another robot before the latter robot claims it.  The Delayed Target Choice algorithm lets each awake robot accumulate movement tokens until it has enough to reach the closest sleeping target.  Only then does it add this target to the awakening schedule.</p>
+		<p><b>Constant Factor Algorithm.</b> The constant-factor approximation algorithm developed by Arkin et al. boasts a an O(1)-approximation to the optimal wake-up schedule time.  This algorithm divides the space around each robot into pie shaped sectors and the robot visits only the closest robot in each sector in order of increasing distance from its starting position.  This visualization uses eight sectors and follows the Greedy Delayed Target Choice model to resolve conflicts when two robots which to awaken the same target.</p>
+		
+		<script type="text/javascript" src = "rs.js"></script>
+	</body>
+</html>
